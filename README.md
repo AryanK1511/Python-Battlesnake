@@ -1,1 +1,1 @@
-# Python-Battlesnake
+# Python Battlesnake
