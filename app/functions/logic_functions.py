@@ -14,8 +14,8 @@ def find_best_move(game_state, is_move_safe):
     possible_moves = {
         "left": {'x': my_snake_head['x'] - 1, 'y': my_snake_head['y']},
         "right": {'x': my_snake_head['x'] + 1, 'y': my_snake_head['y']},
-        "up": {'x': my_snake_head['x'], 'y': my_snake_head['y'] - 1},
-        "down": {'x': my_snake_head['x'], 'y': my_snake_head['y'] + 1}
+        "up": {'x': my_snake_head['x'], 'y': my_snake_head['y'] + 1},
+        "down": {'x': my_snake_head['x'], 'y': my_snake_head['y'] - 1}
     }
     
     # Make a dictionary of all possible moves and their scores
