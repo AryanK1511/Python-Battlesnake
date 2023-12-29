@@ -1,0 +1,52 @@
+# ========== RETURNS SAFE MOVES ==========
+def get_safe_moves(game_state, is_move_safe):
+    my_snake_head = game_state['you']['body'][0]
+    possible_moves = {
+        "left": (my_snake_head['x'] - 1, my_snake_head['y']),
+        "right": (my_snake_head['x'] + 1, my_snake_head['y']),
+        "up": (my_snake_head['x'], my_snake_head['y'] + 1),
+        "down": (my_snake_head['x'], my_snake_head['y'] - 1)
+    }
+
+    for move, coordinate in possible_moves.items():
+        is_move_safe[move] = is_move_possible(game_state, coordinate)
+
+    return is_move_safe
+
+# ========== CHECKS TO SEE IF THE GIVEN MOVE IS NOT RESULTING IN COLLISION OR OUT FO BOUNDS SCENARIO ==========
+def is_move_possible(game_state, coordinate):
+    board_width = game_state['board']['width']
+    board_height = game_state['board']['height']
+    x, y = coordinate
+
+    # Check if the move is out of bounds
+    if x < 0 or x >= board_width or y < 0 or y >= board_height:
+        return False
+
+    # Check for collisions with self and other snakes
+    for snake in game_state["board"]["snakes"]:
+        for body_part in snake["body"]:
+            if body_part["x"] == x and body_part["y"] == y:
+                return False
+
+    # If the function hasn't returned False by now, the move is possible
+    return True
+
+# ===== STOPS SNAKE FROM GOING OUT OF BOUNDS =====
+def prevent_out_of_bounds_movement(game_state, is_move_safe):
+    my_head = game_state["you"]["body"][0]  
+    board_width = game_state['board']['width']
+    board_height = game_state['board']['height']
+
+    # The snake does not go outside from left or right
+    if my_head["x"] <= 0:
+        is_move_safe["left"] = False
+    if my_head["x"] >= board_width - 1:
+        is_move_safe["right"] = False
+    # The snake does not go outside from top or bottom
+    if my_head["y"] <= 0:
+        is_move_safe["down"] = False
+    if my_head["y"] >= board_height - 1:
+        is_move_safe["up"] = False
+
+    return is_move_safe

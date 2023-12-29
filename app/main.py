@@ -1,4 +1,4 @@
-from app import response_functions
+from functions import response_functions
 
 # Start server when `python main.py` is run
 if __name__ == "__main__":
