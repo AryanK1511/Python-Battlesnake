@@ -31,22 +31,3 @@ def is_move_possible(game_state, coordinate):
 
     # If the function hasn't returned False by now, the move is possible
     return True
-
-# ===== STOPS SNAKE FROM GOING OUT OF BOUNDS =====
-def prevent_out_of_bounds_movement(game_state, is_move_safe):
-    my_head = game_state["you"]["body"][0]  
-    board_width = game_state['board']['width']
-    board_height = game_state['board']['height']
-
-    # The snake does not go outside from left or right
-    if my_head["x"] <= 0:
-        is_move_safe["left"] = False
-    if my_head["x"] >= board_width - 1:
-        is_move_safe["right"] = False
-    # The snake does not go outside from top or bottom
-    if my_head["y"] <= 0:
-        is_move_safe["down"] = False
-    if my_head["y"] >= board_height - 1:
-        is_move_safe["up"] = False
-
-    return is_move_safe
