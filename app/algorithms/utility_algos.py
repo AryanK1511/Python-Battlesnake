@@ -31,3 +31,11 @@ def is_move_possible(game_state, coordinate):
 
     # If the function hasn't returned False by now, the move is possible
     return True
+
+# Normalize a value to the range [-1, 1]
+def normalize(value, min_value, max_value):
+    # Avoid division by zero
+    if max_value - min_value == 0:
+        return 0
+    # First it divides to make the value between 0 and 1, then it multiplies by 2 and subtracts 1 to make it between -1 and 1
+    return 2 * ((value - min_value) / (max_value - min_value)) - 1

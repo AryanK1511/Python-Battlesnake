@@ -1,4 +1,4 @@
-from utility_algos import is_move_possible
+from .utility_algos import is_move_possible
 
 # Flood Fill Algorithm Implementation
 # This function will return the area that the snake can control in the specific game state provided
