@@ -6,6 +6,7 @@ def heuristic_cost_estimate(current, goal):
     return abs(current[0] - goal[0]) + abs(current[1] - goal[1])
 
 # Implementation of the A* algorithm
+# This function will return an array of tuples that will outline the path from the start node to the target node
 def a_star(game_state, start, goal, is_move_safe):
     rows, columns = game_state['board']['height'], game_state['board']['width']
     open_set = [(0, start)] # Initialize the open set with the start node, using a min-heap for efficient retrieval of the node with the lowest cost

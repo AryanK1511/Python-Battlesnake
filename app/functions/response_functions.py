@@ -26,7 +26,6 @@ def end(game_state: typing.Dict):
 def move(game_state: typing.Dict) -> typing.Dict:
     # Returning a dictionary at the end which tells the Battlesnake what direction to move
     is_move_safe = {"up": True, "down": True, "left": True, "right": True}
-    best_move = ""
     print(game_state) # For logs
 
     # ========== Movement manipulators ========== 
@@ -35,9 +34,6 @@ def move(game_state: typing.Dict) -> typing.Dict:
     is_move_safe = prevent_out_of_bounds_movements_and_collisions(game_state, is_move_safe)
     print("Safe moves after BOUNDARY AND COLLISION PREVENTION CODE: " + str(is_move_safe))
 
-    best_move = find_best_move(game_state)
-    print("Safe moves after FIND BEST MOVE FUNCTION: " + str(is_move_safe))
-
     print("===========================================================================")
 
     # ===== CHECK FOR AVAILABLE SAFE MOVES =====
@@ -45,10 +41,7 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
     # Choose a random move from the safe ones
     if len(safe_moves) > 0:
-        if len(best_move) > 0:
-            next_move = best_move
-        else:
-            next_move = random.choice(safe_moves)
+        next_move = random.choice(safe_moves)
     else:
         print("No safe moves")
         next_move = "down"
