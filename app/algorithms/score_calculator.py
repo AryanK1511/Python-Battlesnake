@@ -28,17 +28,24 @@ def calculate_game_state_score(game_state):
     flood_fill_area = flood_fill(game_state, snake_head_tuple)
 
     # Normalize the scores
-    normalized_path_length = normalize(a_star_path_length, 0, max_path_length)
-    normalized_area = normalize(flood_fill_area, 0, max_area)
+    # normalized_path_length = normalize(a_star_path_length, 0, max_path_length)
+    # normalized_area = normalize(flood_fill_area, 0, max_area)
 
     # Weights
-    path_weight = -0.8
+    path_weight = 0.4
     area_weight = 0.6
 
     # Calculate the score
-    final_score = (path_weight * normalized_path_length) + (area_weight * normalized_area)
+    final_score = (path_weight * a_star_path_length) + (area_weight * flood_fill_area)
+
+    print("-----STATS-----")
+    print("Path: " + str(a_star_path))
+    print("Path Length: " + str(a_star_path_length))
+    print("Area: " + str(flood_fill_area))
+    print("Final Score: " + str(final_score))
+    print("---------------")
 
     # Clamp final score between -1 and 1
-    final_score = max(-1, min(final_score, 1))
+    # final_score = max(-1, min(final_score, 1))
 
     return final_score

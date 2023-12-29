@@ -24,6 +24,7 @@ def flood_fill(game_state, start):
         return 1 + dfs(x + 1, y) + dfs(x - 1, y) + dfs(x, y + 1) + dfs(x, y - 1)
     
     # Return the area of that our snake controls
+    print("Visited: ",  visited)
     return dfs(start[0], start[1])
 
 # # ===== TESTING =====
