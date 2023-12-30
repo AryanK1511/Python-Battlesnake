@@ -90,7 +90,3 @@ def normalize(value, min_value, max_value):
         return 0
     # First it divides to make the value between 0 and 1, then it multiplies by 2 and subtracts 1 to make it between -1 and 1
     return 2 * ((value - min_value) / (max_value - min_value)) - 1
-
-gs = {'game': {'id': '418e0083-877f-4781-9a5c-a432b1d1cc17', 'ruleset': {'name': 'standard', 'version': 'v1.2.3', 'settings': {'foodSpawnChance': 15, 'minimumFood': 1, 'hazardDamagePerTurn': 0, 'hazardMap': '', 'hazardMapAuthor': '', 'royale': {'shrinkEveryNTurns': 0}, 'squad': {'allowBodyCollisions': False, 'sharedElimination': False, 'sharedHealth': False, 'sharedLength': False}}}, 'map': 'standard', 'timeout': 500, 'source': 'custom'}, 'turn': 5, 'board': {'height': 11, 'width': 11, 'snakes': [{'id': 'gs_fyT8RTv7qw6DKKJYfb9fXmbS', 'name': 'Academic Weapon (Beta)', 'latency': '162', 'health': 95, 'body': [{'x': 1, 'y': 0}, {'x': 1, 'y': 1}, {'x': 1, 'y': 2}], 'head': {'x': 1, 'y': 0}, 'length': 3, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}], 'food': [{'x': 0, 'y': 6}, {'x': 5, 'y': 5}], 'hazards': []}, 'you': {'id': 'gs_fyT8RTv7qw6DKKJYfb9fXmbS', 'name': 'Academic Weapon (Beta)', 'latency': '162', 'health': 95, 'body': [{'x': 1, 'y': 0}, {'x': 1, 'y': 1}, {'x': 1, 'y': 2}], 'head': {'x': 1, 'y': 0}, 'length': 3, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}}
-
-print(get_safe_moves(gs, {"up": True, "down": True, "left": True, "right": True}))

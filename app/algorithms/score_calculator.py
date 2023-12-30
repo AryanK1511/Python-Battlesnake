@@ -1,6 +1,5 @@
 from .a_star_algorithm import a_star, heuristic_cost_estimate
 from .flood_fill_algorithm import flood_fill
-from.utility_algos import normalize
 
 # ========== SCORES A GAME STATE BASED ON VARIOUS FACTORS ==========
 def calculate_game_state_score(game_state):
@@ -9,7 +8,7 @@ def calculate_game_state_score(game_state):
     max_area = max_path_length
 
     # Get the coordinates of the closeset food item
-    snake_head = game_state['you']['body'][0]
+    snake_head = next(s for s in game_state['board']['snakes'] if s['id'] == game_state['you']['id'])['head']
     food_items = game_state['board']['food']
 
     # Converting the list of dictionaries to a list of tuples
@@ -27,12 +26,8 @@ def calculate_game_state_score(game_state):
     # Get the Flood Fill area
     flood_fill_area = flood_fill(game_state, snake_head_tuple)
 
-    # Normalize the scores
-    # normalized_path_length = normalize(a_star_path_length, 0, max_path_length)
-    # normalized_area = normalize(flood_fill_area, 0, max_area)
-
     # Weights
-    path_weight = 0.4
+    path_weight = -0.4
     area_weight = 0.6
 
     # Calculate the score

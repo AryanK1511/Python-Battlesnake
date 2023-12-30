@@ -53,10 +53,3 @@ def a_star(game_state, start, goal):
 
     # If the goal is not reachable, return None
     return None 
-    
-# ===== TESTING =====
-# is_move_safe = {"up": True, "down": True, "left": True, "right": False}
-
-# game_state = {'game': {'id': '8395c520-48bd-400d-86f5-40b70844e1b3', 'ruleset': {'name': 'standard', 'version': 'v1.2.3', 'settings': {'foodSpawnChance': 15, 'minimumFood': 1, 'hazardDamagePerTurn': 0, 'hazardMap': '', 'hazardMapAuthor': '', 'royale': {'shrinkEveryNTurns': 0}, 'squad': {'allowBodyCollisions': False, 'sharedElimination': False, 'sharedHealth': False, 'sharedLength': False}}}, 'map': 'standard', 'timeout': 500, 'source': 'custom'}, 'turn': 150, 'board': {'height': 11, 'width': 11, 'snakes': [{'id': 'gs_HVJ9FrPYVQQgQVp7BCK7VrHM', 'name': 'Academic Weapon', 'latency': '160', 'health': 91, 'body': [{'x': 1, 'y': 1}, {'x': 1, 'y': 2}], 'head': {'x': 1, 'y': 1}, 'length': 12, 'shout': '', 'squad': '', 'customizations': {'color': '#888888', 'head': 'default', 'tail': 'default'}}], 'food': [{'x': 0, 'y': 8}, {'x': 2, 'y': 6}, {'x': 0, 'y': 9}, {'x': 3, 'y': 9}, {'x': 2, 'y': 0}, {'x': 7, 'y': 1}, {'x': 1, 'y': 5}, {'x': 10, 'y': 1}, {'x': 8, 'y': 7}, {'x': 4, 'y': 9}, {'x': 9, 'y': 10}], 'hazards': []}, 'you': {'id': 'gs_HVJ9FrPYVQQgQVp7BCK7VrHM', 'name': 'Academic Weapon', 'latency': '160', 'health': 91, 'body': [{'x': 10, 'y': 4}, {'x': 10, 'y': 3}, {'x': 9, 'y': 3}, {'x': 8, 'y': 3}, {'x': 8, 'y': 4}, {'x': 9, 'y': 4}, {'x': 9, 'y': 5}, {'x': 10, 'y': 5}, {'x': 10, 'y': 6}, {'x': 10, 'y': 7}, {'x': 10, 'y': 8}, {'x': 10, 'y': 9}], 'head': {'x': 10, 'y': 4}, 'length': 12, 'shout': '', 'squad': '', 'customizations': {'color': '#888888', 'head': 'default', 'tail': 'default'}}}
-
-# print(a_star(game_state, (1, 1), (4, 4)))
