@@ -16,13 +16,13 @@ def find_best_move(game_state, is_move_safe):
         possible_moves_score[move] = calculate_game_state_score(simulated_game_state)
 
         # ===== LOGGER =====
-        print("********")
-        print("OG GS: ")
-        print(game_state)
-        print("SGS: ")
-        print(simulated_game_state)
-        print("Move: " + move)
-        print("********")
+        # print("********")
+        # print("OG GS: ")
+        # print(game_state)
+        # print("SGS: ")
+        # print(simulated_game_state)
+        # print("Move: " + move)
+        # print("********")
         # ==================
 
     # ===== LOGGER =====

@@ -82,11 +82,3 @@ def is_terminal(game_state):
     my_snake = game_state['you']
     # Check for zero health or if the snake has no body parts
     return my_snake['health'] <= 0 or not my_snake['body']
-
-# ========== Normalize a value to the range [-1, 1] ==========
-def normalize(value, min_value, max_value):
-    # Avoid division by zero
-    if max_value - min_value == 0:
-        return 0
-    # First it divides to make the value between 0 and 1, then it multiplies by 2 and subtracts 1 to make it between -1 and 1
-    return 2 * ((value - min_value) / (max_value - min_value)) - 1
