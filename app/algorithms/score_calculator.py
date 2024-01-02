@@ -47,12 +47,12 @@ def calculate_game_state_score(game_state):
     )
 
     # ===== LOGGER =====
-    print("-----STATS-----")
-    print("Path: " + str(a_star_path))
-    print("Path Length: " + str(a_star_path_length))
-    print("Area: " + str(flood_fill_area))
-    print("Final Score: " + str(final_score))
-    print("---------------")
+    # print("-----STATS-----")
+    # print("Path: " + str(a_star_path))
+    # print("Path Length: " + str(a_star_path_length))
+    # print("Area: " + str(flood_fill_area))
+    # print("Final Score: " + str(final_score))
+    # print("---------------")
     # ==================
 
     return final_score

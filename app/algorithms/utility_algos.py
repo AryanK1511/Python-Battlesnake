@@ -82,3 +82,12 @@ def is_terminal(game_state):
     my_snake = game_state['you']
     # Check for zero health or if the snake has no body parts
     return my_snake['health'] <= 0 or not my_snake['body']
+
+# ========== GETS ALL POSSIBLE MOVES OF THE OPPONENTS ==========
+def get_all_opponent_moves(game_state):
+    opponent_moves = {}
+    for snake in game_state['board']['snakes']:
+        if snake['id'] != game_state['you']['id']:
+            # Assume each opponent snake can move in four directions
+            opponent_moves[snake['id']] = ['up', 'down', 'left', 'right']
+    return opponent_moves

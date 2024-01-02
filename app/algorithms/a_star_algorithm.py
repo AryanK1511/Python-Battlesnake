@@ -27,7 +27,7 @@ def a_star(game_state, start, goal):
             path.append(start)
 
             # ===== LOGGER =====
-            print("A* Path: ", path[::-1])
+            # print("A* Path: ", path[::-1])
             # ==================s
 
             return path[::-1]  # Reversed path from start to goal

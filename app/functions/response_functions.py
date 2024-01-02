@@ -52,7 +52,7 @@ def move(game_state: typing.Dict) -> typing.Dict:
             next_move = random.choice(safe_moves)
     else:
         print("No safe moves")
-        next_move = "down"
+        next_move = "left"
 
     print(f"MOVE {game_state['turn']}: {next_move}")
     print("===========================================================================")
