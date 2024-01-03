@@ -1,20 +1,43 @@
-from copy import deepcopy
+from graphviz import Digraph
 
-gs = {'game': {'id': '418e0083-877f-4781-9a5c-a432b1d1cc17', 'ruleset': {'name': 'standard', 'version': 'v1.2.3', 'settings': {'foodSpawnChance': 15, 'minimumFood': 1, 'hazardDamagePerTurn': 0, 'hazardMap': '', 'hazardMapAuthor': '', 'royale': {'shrinkEveryNTurns': 0}, 'squad': {'allowBodyCollisions': False, 'sharedElimination': False, 'sharedHealth': False, 'sharedLength': False}}}, 'map': 'standard', 'timeout': 500, 'source': 'custom'}, 'turn': 5, 'board': {'height': 11, 'width': 11, 'snakes': [{'id': 'gs_fyT8RTv7qw6DKKJYfb9fXmbS', 'name': 'Academic Weapon (Beta)', 'latency': '162', 'health': 95, 'body': [{'x': 1, 'y': 0}, {'x': 1, 'y': 1}, {'x': 1, 'y': 2}], 'head': {'x': 1, 'y': 0}, 'length': 3, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}], 'food': [{'x': 0, 'y': 6}, {'x': 5, 'y': 5}], 'hazards': []}, 'you': {'id': 'gs_fyT8RTv7qw6DKKJYfb9fXmbS', 'name': 'Academic Weapon (Beta)', 'latency': '162', 'health': 95, 'body': [{'x': 1, 'y': 0}, {'x': 1, 'y': 1}, {'x': 1, 'y': 2}], 'head': {'x': 1, 'y': 0}, 'length': 3, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}}
+def create_minimax_tree():
+    # Initialize a Digraph for the tree
+    dot = Digraph(comment='Minimax Tree')
 
-gs_cpy = deepcopy(gs)
+    # Adding nodes and edges from the provided output
+    dot.node('A', 'Root\n(Down, 212.0)')
+    dot.node('B', 'Max\nUp\n214.0')
+    dot.node('C', 'Max\nDown\n213.0')
+    dot.node('D', 'Max\nLeft\n214.0')
+    dot.node('E', 'Max\nRight\n213.0')
 
-gs_cpy["board"]["snakes"][0]["body"].insert(0, {"x": 12222, "y": 32})
+    dot.node('F', 'Min\nUp\n214.0')
+    dot.node('G', 'Min\nDown\n213.0')
+    dot.node('H', 'Min\nLeft\n214.0')
+    dot.node('I', 'Min\nRight\n213.0')
 
-print(gs_cpy)
-print("-----")
-print(gs)
+    dot.node('J', 'Max\nUp\n148.3')
+    dot.node('K', 'Max\nDown\n148.3')
+    dot.node('L', 'Max\nLeft\n147.3')
+    dot.node('M', 'Max\nRight\n146.3')
 
-print(gs["board"]["snakes"][0]["id"])
+    dot.node('N', 'Min\nUp\n147.3')
+    dot.node('O', 'Min\nDown\n146.3')
+    dot.node('P', 'Min\nLeft\n147.3')
+    dot.node('Q', 'Min\nRight\n145.3')
 
-# ===== TESTING =====
-# is_move_safe = {"up": True, "down": True, "left": True, "right": False}
+    # Edges for the tree
+    dot.edges(['AB', 'AC', 'AD', 'AE'])
+    dot.edges(['BF', 'CG', 'DH', 'EI'])
+    dot.edges(['FJ', 'GK', 'HL', 'IM'])
+    dot.edges(['JN', 'KO', 'LP', 'MQ'])
 
-# game_state = {'game': {'id': 'b8c391c8-e58a-4476-9123-e8a739b1fce2', 'ruleset': {'name': 'standard', 'version': 'v1.2.3', 'settings': {'foodSpawnChance': 15, 'minimumFood': 1, 'hazardDamagePerTurn': 0, 'hazardMap': '', 'hazardMapAuthor': '', 'royale': {'shrinkEveryNTurns': 0}, 'squad': {'allowBodyCollisions': False, 'sharedElimination': False, 'sharedHealth': False, 'sharedLength': False}}}, 'map': 'standard', 'timeout': 500, 'source': 'custom'}, 'turn': 74, 'board': {'height': 11, 'width': 11, 'snakes': [{'id': 'gs_jb9wkfhxjxjMWgMGkgCBDf3f', 'name': 'Academic Weapon (Beta)', 'latency': '195', 'health': 97, 'body': [{'x': 5, 'y': 5}, {'x': 5, 'y': 6}, {'x': 4, 'y': 6}, {'x': 3, 'y': 6}, {'x': 3, 'y': 7}, {'x': 3, 'y': 8}, {'x': 2, 'y': 8}, {'x': 1, 'y': 8}, {'x': 0, 'y': 8}, {'x': 0, 'y': 9}, {'x': 1, 'y': 9}, {'x': 2, 'y': 9}, {'x': 3, 'y': 9}, {'x': 4, 'y': 9}], 'head': {'x': 5, 'y': 5}, 'length': 14, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}, {'id': 'gs_tjy3hxr7RvRhyfdQTG7BvGWb', 'name': 'Scared Bot', 'latency': '1', 'health': 65, 'body': [{'x': 6, 'y': 4}, {'x': 7, 'y': 4}, {'x': 7, 'y': 5}, {'x': 7, 'y': 6}, {'x': 8, 'y': 6}], 'head': {'x': 6, 'y': 4}, 'length': 5, 'shout': '', 'squad': '', 'customizations': {'color': '#000000', 'head': 'bendr', 'tail': 'curled'}}, {'id': 'gs_bhXtQKSXMHW8dyd733KcMmB6', 'name': 'Loopy Bot', 'latency': '1', 'health': 28, 'body': [{'x': 0, 'y': 4}, {'x': 0, 'y': 5}, {'x': 1, 'y': 5}, {'x': 1, 'y': 4}], 'head': {'x': 0, 'y': 4}, 'length': 4, 'shout': '', 'squad': '', 'customizations': {'color': '#800080', 'head': 'caffeine', 'tail': 'iguana'}}], 'food': [{'x': 5, 'y': 1}, {'x': 0, 'y': 6}], 'hazards': []}, 'you': {'id': 'gs_jb9wkfhxjxjMWgMGkgCBDf3f', 'name': 'Academic Weapon (Beta)', 'latency': '195', 'health': 97, 'body': [{'x': 5, 'y': 5}, {'x': 5, 'y': 6}, {'x': 4, 'y': 6}, {'x': 3, 'y': 6}, {'x': 3, 'y': 7}, {'x': 3, 'y': 8}, {'x': 2, 'y': 8}, {'x': 1, 'y': 8}, {'x': 0, 'y': 8}, {'x': 0, 'y': 9}, {'x': 1, 'y': 9}, {'x': 2, 'y': 9}, {'x': 3, 'y': 9}, {'x': 4, 'y': 9}], 'head': {'x': 5, 'y': 5}, 'length': 14, 'shout': '', 'squad': '', 'customizations': {'color': '#fdac53', 'head': 'smart-caterpillar', 'tail': 'coffee'}}}
+    return dot
 
-# print(a_star(game_state, (1, 1), (4, 4)))
+# Create the Minimax tree
+minimax_tree = create_minimax_tree()
+
+# Render the tree to a file
+minimax_tree.render('/mnt/data/minimax_tree', format='png', cleanup=True)
+
+'/mnt/data/minimax_tree.png'

@@ -55,6 +55,9 @@ def simulate_move(game_state, move, snake_id):
     # Check to see whether the snake was able to grow in size after eating food
     if new_head not in game_state_copy['board']['food']:
         snake['body'].pop()  # Assume no food eaten
+    else:
+        # Remove that food from the board
+        game_state_copy['board']['food'].remove(new_head)
 
     # Update the game state with the new snake position
     return game_state_copy
@@ -79,9 +82,35 @@ def simulate_head_move(snake_head, move):
 
 # ========== CHECKS IF THE GAME STATE IS A TERMINAL STATE ==========
 def is_terminal(game_state):
-    my_snake = game_state['you']
-    # Check for zero health or if the snake has no body parts
-    return my_snake['health'] <= 0 or not my_snake['body']
+    # Retrieve our snake's information
+    our_snake = next(s for s in game_state['board']['snakes'] if s['id'] == game_state['you']['id'])
+
+    # Check if our snake's health is zero
+    if our_snake['health'] <= 0:
+        return True
+
+    # Check if our snake has no body parts remaining, indicating it has died
+    if not our_snake['body']:
+        return True
+
+    # Check if our snake's head is in a collision with walls or other snakes
+    head = our_snake['body'][0]
+    # Check for wall collisions
+    if head['x'] < 0 or head['x'] >= game_state['board']['width'] or head['y'] < 0 or head['y'] >= game_state['board']['height']:
+        return True
+
+    # Check for collisions with all snakes (including our own body)
+    for snake in game_state['board']['snakes']:
+        for segment in snake['body']:
+            if head['x'] == segment['x'] and head['y'] == segment['y']:
+                # If the collision is with our own head, it's not a terminal state
+                if segment == head and snake['id'] == our_snake['id']:
+                    continue
+                return True
+
+    # If none of the terminal conditions are met, return False
+    return False
+
 
 # ========== GETS ALL POSSIBLE MOVES OF THE OPPONENTS ==========
 def get_all_opponent_moves(game_state):

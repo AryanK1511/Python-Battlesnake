@@ -9,7 +9,7 @@ def info() -> typing.Dict:
     return {
         "apiversion": "1",
         "author": "AryanK1511", 
-        "color": "#FDAC53",  
+        "color": "#FFFFFF",  
         "head": "smart-caterpillar",  
         "tail": "coffee"
     }
@@ -43,6 +43,8 @@ def move(game_state: typing.Dict) -> typing.Dict:
 
     # ===== CHECK FOR AVAILABLE SAFE MOVES =====
     safe_moves = [move for move, isSafe in is_move_safe.items() if isSafe]
+    print("Safe moves: " + str(safe_moves))
+    print(best_move)
 
     # Choose a random move from the safe ones
     if len(safe_moves) > 0:
