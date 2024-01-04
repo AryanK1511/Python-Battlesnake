@@ -1,6 +1,6 @@
 import random
 import typing
-from .logic_functions import prevent_out_of_bounds_movement, prevent_collisions
+from .logic_functions import prevent_out_of_bounds_movements_and_collisions, find_best_move
 
 # Called at battlesnake creation
 def info() -> typing.Dict:
@@ -9,7 +9,7 @@ def info() -> typing.Dict:
     return {
         "apiversion": "1",
         "author": "AryanK1511", 
-        "color": "#FDAC53",  
+        "color": "#FFFFFF",  
         "head": "smart-caterpillar",  
         "tail": "coffee"
     }
@@ -26,27 +26,36 @@ def end(game_state: typing.Dict):
 def move(game_state: typing.Dict) -> typing.Dict:
     # Returning a dictionary at the end which tells the Battlesnake what direction to move
     is_move_safe = {"up": True, "down": True, "left": True, "right": True}
-    print(game_state)
+    best_move = ""
 
     # ========== Movement manipulators ========== 
     print("\n===========================================================================")
-    is_move_safe = prevent_out_of_bounds_movement(game_state, is_move_safe)
-    print("Safe moves after BOUNDARY PREVENTION CODE: " + str(is_move_safe))
 
-    is_move_safe = prevent_collisions(game_state, is_move_safe)
-    print("Safe moves after COLLISION PREVENTION CODE: " + str(is_move_safe))
+    # ===== LOGGER =====
+    print(game_state) 
+    # ==================
+    
+    is_move_safe = prevent_out_of_bounds_movements_and_collisions(game_state, is_move_safe)
+    print("Safe moves after BOUNDARY AND COLLISION PREVENTION CODE: " + str(is_move_safe))
 
-    print("===========================================================================")
+    best_move = find_best_move(game_state, is_move_safe)
+    print("BEST MOVE: " + str(best_move))
 
     # ===== CHECK FOR AVAILABLE SAFE MOVES =====
     safe_moves = [move for move, isSafe in is_move_safe.items() if isSafe]
+    print("Safe moves: " + str(safe_moves))
+    print(best_move)
 
     # Choose a random move from the safe ones
     if len(safe_moves) > 0:
-        next_move = random.choice(safe_moves)
+        if best_move in safe_moves:
+            next_move = best_move
+        else:
+            next_move = random.choice(safe_moves)
     else:
         print("No safe moves")
-        next_move = "down"
+        next_move = "left"
 
     print(f"MOVE {game_state['turn']}: {next_move}")
+    print("===========================================================================")
     return {"move": next_move}
