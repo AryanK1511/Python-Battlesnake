@@ -43,7 +43,7 @@ def get_opponent_snake_ids(game_state):
 
 # ========== SIMULATES A SNAKE MOVE ==========
 def simulate_move(game_state, move, snake_id):
-    game_state_copy = deepcopy(game_state) 
+    game_state_copy = deepcopy(game_state)
 
     # Get the snake and its head
     snake = next(s for s in game_state_copy['board']['snakes'] if s['id'] == snake_id)
@@ -53,11 +53,18 @@ def simulate_move(game_state, move, snake_id):
     snake['body'].insert(0, new_head)
 
     # Check to see whether the snake was able to grow in size after eating food
-    if new_head not in game_state_copy['board']['food']:
-        snake['body'].pop()  # Assume no food eaten
-    else:
-        # Remove that food from the board
+    if new_head in [food for food in game_state_copy['board']['food']]:
+        # If food is eaten, increase the health of the snake and remove that food from the board
+        snake['health'] = 100  # Assuming full health is restored on eating food
         game_state_copy['board']['food'].remove(new_head)
+    else:
+        # If no food eaten, reduce the health and remove the last segment of the snake's body
+        snake['health'] -= 1  # Assuming health decreases by 1 for each move
+        snake['body'].pop()
+
+    # Update the "you" part of the game state if it's our snake
+    if snake_id == game_state['you']['id']:
+        game_state_copy['you'] = snake
 
     # Update the game state with the new snake position
     return game_state_copy
